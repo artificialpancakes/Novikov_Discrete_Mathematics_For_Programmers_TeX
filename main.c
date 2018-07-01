@@ -14,3 +14,4 @@ vector* gray_binary_code(int n) {
 
   return out;
 }
+
