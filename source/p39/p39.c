@@ -13,7 +13,7 @@ int main()
 	for(int i = 0; i < pow(2, n); ++i)
 	{
 		int t = i, p = 1;
-		while(t)
+		while(t) //код очередного подмножества
 		{
 			m[i] += t % 2 * p;
 			t /= 2;
