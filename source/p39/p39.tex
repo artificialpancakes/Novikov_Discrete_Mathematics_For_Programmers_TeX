@@ -3,20 +3,14 @@
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[russian, english]{babel}
+\usepackage[left = 2cm]{geometry}
 \usepackage{listings}
 
 \begin{document}
 \lstset{language = C, extendedchars = \true, keepspaces = true}
 \begin{lstlisting}
-for(int i = 0; i < pow(2, n); ++i)
-{
-	int t = i, p = 1;
-	while(t) //код очередного подмножества
-	{
-		m[i] += t % 2 * p;
-		t /= 2;
-		p *= 10;
-	}
-}
+int s = pow(2, n), m[s];
+for(int i = 0; i < s; ++i)
+	m[i] = i; //код очередного подмножества
 \end{lstlisting}
 \end{document}
