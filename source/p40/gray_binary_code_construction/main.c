@@ -6,10 +6,10 @@ vector* gray_binary_code(int n) {
   }
   vector_pushback(out, B);
 
-  for (int i = 0; i < pow(2, n); i++) {
+  for (int i = 1; i < pow(2, n); i++) {
     int p = Q(i);
     B[p] = 1 - B[p];
-    vector_pushback(out, B); 
+    vector_pushback(out, B);
   }
 
   return out;
