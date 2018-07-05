@@ -21,7 +21,7 @@ elem *add(elem *l, int v)
 	return p;
 }
 
-void iter_diff_sets(elem *X, elem *Y)
+void iter_p_sets(elem *X, elem *Y)
 {
 	for(elem *x = X; x != NULL; x = x->n)
 	{
@@ -42,5 +42,5 @@ int main()
 	while(scanf("%d", &v) != EOF) a = add(a, v);
 	while(scanf("%d", &v) != EOF) b = add(b, v);
 
-	iter_diff_sets(a, b);
+	iter_p_sets(a, b);
 }
