@@ -1,6 +1,22 @@
-#include <stdbool.h>
-#include <math.h>
+\documentclass{article}
 
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian, english]{babel}
+\usepackage[left = 2cm]{geometry}
+\usepackage{listings}
+
+\renewcommand{\lstlistingname}{Алгоритм}
+
+\begin{document}
+
+\lstset{language = C,
+    extendedchars = \true,
+    keepspaces = true,
+    breaklines=true,
+    frame=lines}
+\hrule
+\begin{lstlisting}[title=\textbf {Алгоритм 3.3} Построение СДНФ]
 vector* pdnf_construction(int n1, char *x, int n2, int *F) {
   vector *out = vector_create(); /* последовательность символов, образующих запись формулы СДНФ для заданной функции. */
   bool f = false; /* признак присутствия левого операнда дизъюнкции */
@@ -28,7 +44,5 @@ vector* pdnf_construction(int n1, char *x, int n2, int *F) {
   }
   return out;
 }
-
-int main() {
-  return 0;
-}
+\end{lstlisting}
+\end{document}
