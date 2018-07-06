@@ -15,21 +15,25 @@ int vector_compare(vector *a, vector *b) {
   return 0;
 }
 
-vector *greedy_algorithm(vector *E, family *Eps) {
-  vector *X = vector_create();
+vector *matroid_basis_construction(vector *E, family *Eps) {
+  vector *B = vector_create();
   for (int i = 0; i < vector_size(E); i++) {
     int e = vector_get_element_at(E, i);
-    vector_push_back(X, e);
+    vector_push_back(B, e);
     int flag = 0;
     for (int j = 0; j < vector_size(Eps); j++) {
       vector *subset = family_get_element_at(Eps, j);
-      if (vector_compare(subset, X) == 0) { // B + e in Eps
+      if (vector_compare(subset, B) == 0) { // B + e in Eps
         flag = 1;
         break;
       }
     }
     if (flag == 0) {
-      vector_pop(X);
+      vector_pop(B);
     }
   }
+}
+
+int main() {
+  return 0;
 }
