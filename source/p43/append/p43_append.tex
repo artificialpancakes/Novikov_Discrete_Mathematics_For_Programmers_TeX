@@ -1,0 +1,33 @@
+
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian, english]{babel}
+\usepackage[left = 2cm]{geometry}
+\usepackage{listings}
+
+\renewcommand{\lstlistingname}{Алгоритм}
+
+\begin{document}
+
+\lstset{language = C,
+    extendedchars = \true,
+    keepspaces = true,
+    breaklines=true,
+    frame=lines}
+\hrule
+\begin{lstlisting}[title=\textbf {Алгоритм 1.2} Построение бинарного кода Грея]
+void append(elem **c, elem **e, int d) {
+  elem *q = malloc(sizeof(elem)); /* новый элемент списка~*/
+  q->i = d; q->n = NULL;
+  if ((*c) == NULL) {
+    (*c) = q; /* пустой список~*/
+  }
+  else {
+    (*e)->n = q; /* непустой список~*/
+  }
+  (*e) = q;
+}
+\end{lstlisting}
+\end{document}
