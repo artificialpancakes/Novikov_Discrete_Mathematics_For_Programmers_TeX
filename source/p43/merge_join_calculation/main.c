@@ -29,7 +29,7 @@ void append(elem **c, elem **e, int d) {
   (*e) = q;
 }
 
-elem* calc_merge(elem *a, elem *b) {
+elem* calc_join(elem *a, elem *b) {
   elem *pa = a, *pb = b, *c = NULL, *e = NULL; /* инициализация */
 
   while ((pa != NULL) && (pb != NULL)) {
@@ -79,7 +79,7 @@ int main() {
     append(&b, &pb, d);
   }
 
-  elem *res = calc_merge(a, b);
+  elem *res = calc_join(a, b);
   list_print(res);
 
   return 0;
