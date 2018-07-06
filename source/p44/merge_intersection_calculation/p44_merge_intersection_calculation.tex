@@ -16,39 +16,23 @@
     breaklines=true,
     frame=lines}
 \hrule
-\begin{lstlisting}[title=\textbf {Алгоритм 1.2} Построение бинарного кода Грея]
-elem* calc_join(elem *a, elem *b) {
+\begin{lstlisting}[title=\textbf {Алгоритм 1.7} Вычисление пересечения слиянием]
+elem* calc_intersection(elem *a, elem *b) {
   elem *pa = a, *pb = b, *c = NULL, *e = NULL; /* инициализация */
-
   while ((pa != NULL) && (pb != NULL)) {
-    int d;
     if (pa->i < pb->i) {
-      d = pa->i;
       pa = pa->n;
     }
     else if (pa->i > pb->i) {
-      d = pb->i;
       pb = pb->n;
     }
     else {
-      d = pa->i;
+      append(&c, &e, pa->i);
       pa = pa->n;
       pb = pb->n;
     }
-    append(&c, &e, d);
   }
 
-  elem *p = NULL;
-  if (pa != NULL) {
-    p = pa;
-  }
-  if (pb != NULL) {
-    p = pb;
-  }
-  while (p != NULL) {
-    append(&c, &e, p->i);
-    p = p->n;
-  }
   return c;
 }
 \end{lstlisting}
