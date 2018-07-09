@@ -1,0 +1,28 @@
+\documentclass[10pt, a5paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian, english]{babel}
+\usepackage[left = 2cm, right = 2cm, top = 2cm, bottom = 2cm]{geometry}
+\usepackage{listings}
+
+\begin{document}
+\lstset{
+language = C,
+extendedchars = \true,
+keepspaces = true,
+morekeywords = {true, false, bool, NULL},
+basicstyle = \fontsize{7}{9}\selectfont,
+commentstyle = \fontsize{7}{9}\selectfont,
+frame = b}
+
+\noindent\textbf{Алгоритм 5.2} Генерация перестановок в антилексикографическом порядке\\
+\noindent\textbf{Вход:} n - количество элементов\\
+\noindent\textbf{Выход:} последовательность перестановок элементов 1,...,n в\\
+антилексикографическом порядке
+\begin{lstlisting}
+for(int i = 0; i < n; ++i)
+  P[i] = i; /* инициализация */
+Antilex(n); /* вызов рекурсивной процедуры Antilex */
+\end{lstlisting}
+\end{document}
