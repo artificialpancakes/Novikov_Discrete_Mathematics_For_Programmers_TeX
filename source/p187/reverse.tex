@@ -1,0 +1,34 @@
+\documentclass[10pt, a5paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian, english]{babel}
+\usepackage[left = 2cm, right = 2cm, top = 2cm, bottom = 2cm]{geometry}
+\usepackage{listings}
+
+\begin{document}
+\lstset{
+language = C,
+extendedchars = \true,
+keepspaces = true,
+morekeywords = {true, false, bool, NULL},
+basicstyle = \fontsize{7}{9}\selectfont,
+commentstyle = \fontsize{7}{9}\selectfont}
+
+\noindent\textbf{Вход:} k - номер элемента, задающий отрезок массива P,
+подлежащий перестановке в обратном порядке\\
+\noindent\textbf{Выход:} первые k элементов массива P переставлены в
+обратном порядке
+\begin{lstlisting}
+void Reverse(int k)
+{
+  int j = 0; /* нижняя граница обращаемого диапазона */
+  while(j < k)
+  {
+    swap(j, k); /* меняем местами элементы */
+    j = j + 1; /* увеличиваем нижнюю границу */
+    k = k - 1; /* уменьшаем верхнюю границу */
+  }
+}
+\end{lstlisting}
+\end{document}

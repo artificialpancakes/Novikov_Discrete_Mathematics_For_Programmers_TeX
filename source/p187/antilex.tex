@@ -1,1 +1,40 @@
+\documentclass[10pt, a5paper]{article}
 
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian, english]{babel}
+\usepackage[left = 2cm, right = 2cm, top = 2cm, bottom = 2cm]{geometry}
+\usepackage{listings}
+
+\begin{document}
+\lstset{
+language = C,
+extendedchars = \true,
+keepspaces = true,
+morekeywords = {true, false, bool, NULL},
+basicstyle = \fontsize{7}{9}\selectfont,
+commentstyle = \fontsize{7}{9}\selectfont}
+
+\noindent\textbf{Вход:} m - параметр процедуры - количество первых элементов массива P,
+для которых генерируются перестановки\\
+\noindent\textbf{Выход:} последовательность перестановок 1,...,m в антилексикографическом порядке
+\begin{lstlisting}
+void Antilex(int m)
+{
+  if(m == 1)
+    push(Res, P); /* добавление очередной перестановки в вектор */
+  else
+  {
+    for(int i = 0; i < m; ++i)
+    {
+      Antilex(m - 1); /* рекурсивный вызов */
+      if(i < m - 1)
+      {
+        swap(i, m - 1); /* следующий элемент */
+        Reverse(m - 2); /* изменение порядка элементов */
+      }
+    }
+  }
+}
+\end{lstlisting}
+\end{document}
