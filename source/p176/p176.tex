@@ -1,0 +1,35 @@
+\documentclass[a5paper]{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian, english]{babel}
+\usepackage[left = 2cm, right = 2cm, top = 2cm, bottom = 2cm]{geometry}
+\usepackage{listings}
+
+\begin{document}
+\lstset{
+language = C,
+extendedchars = \true,
+keepspaces = true,
+morekeywords = {true, false, bool, elem, NULL},
+basicstyle = \fontsize{7}{9}\selectfont,
+commentstyle = \fontsize{7}{9}\selectfont}
+
+\begin{lstlisting}
+bool method_of_resolution(set C)
+{
+  set M = C; //M - текущее множество предложений
+  while(1)
+  {
+    elem c1, c2;
+    Choose(M, c1, c2, p1, p2, o); //выбор родительских предложений
+    if(empty(c1) && empty(c2))
+      return false; //нечего резольвировать - теорема опровергнута
+    elem c = R(c1, c2, p1, p2, o); //вычисление резольвенты
+    add_elem(M, c); //пополнение текущего множества
+    if(empty(c)) break;
+  }
+  return true; //теорема доказана
+}
+\end{lstlisting}
+\end{document}
