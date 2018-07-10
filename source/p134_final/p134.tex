@@ -1,0 +1,43 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian, english]{babel}
+\usepackage[left = 2cm]{geometry}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{caption}
+
+\renewcommand{\lstlistingname}{Алгоритм}
+\DeclareCaptionFormat{listing}{\par#1#2#3}
+\captionsetup[lstlisting]{format=listing, singlelinecheck=false, labelfont=bf}
+
+\lstset{
+  language=C,
+  extendedchars=\true,
+  keepspaces=true,
+  breaklines=true,
+  frame=lines,
+  aboveskip=-5pt,
+  tabsize=1,
+  morekeywords={Вход:, Выход:, true, false, NULL, bool, vector, bitset}
+}
+
+\begin{document}
+
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Вычисление номера кортежа в установленном порядке}, label=p134_calc_cortege_number, escapechar=`]
+`\noindent\textbf{Вход:} кортеж $x$ : array [1..$n$] of 0..1 значений переменных.\\`
+`\textbf{Выход:} номер $d$ кортежа $x$ при перечислении кортежей в установленном порядке.`
+int calc_cortege_number(int n, int *x) {
+  int d = 0; /* начальное значение индекса */
+  for (int i = 0; i < n; i++) {
+    d = d << 2;
+    if (x[i] == 1) {
+      d++; /* добавляем 1, если нужнo */
+    }
+  }
+}
+\end{lstlisting}
+
+\end{document}
