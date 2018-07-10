@@ -1,0 +1,12 @@
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Функция Q определения номера изменяемого разряда}, label=p40_Q, escapechar=`]
+`\noindent\textbf{Вход:} i — номер подмножества.\\`
+`\textbf{Выход:} номер изменяемого разряда.`
+int Q(int i) {
+  int q = 1; int j = 1;
+  while (j % 2 == 0) {
+    j = j / 2; q++;
+  }
+  return q;
+}
+\end{lstlisting}

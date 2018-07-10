@@ -18,13 +18,13 @@ void list_print(elem *head) {
 }
 
 void append(elem **c, elem **e, int d) {
-  elem *q = malloc(sizeof(elem)); /* новый элемент списка~*/
+  elem *q = malloc(sizeof(elem)); /* новый элемент списка */
   q->i = d; q->n = NULL;
   if ((*c) == NULL) {
-    (*c) = q; /* пустой список~*/
+    (*c) = q; /* пустой список */
   }
   else {
-    (*e)->n = q; /* непустой список~*/
+    (*e)->n = q; /* непустой список */
   }
   (*e) = q;
 }
@@ -33,13 +33,14 @@ elem* calc_intersection(elem *a, elem *b) {
   elem *pa = a, *pb = b, *c = NULL, *e = NULL; /* инициализация */
   while ((pa != NULL) && (pb != NULL)) {
     if (pa->i < pb->i) {
-      pa = pa->n;
+      pa = pa->n; /* элемент множества А пе принадлежит пересечению */
     }
     else if (pa->i > pb->i) {
-      pb = pb->n;
+      pb = pb->n; /* элемент множества В не принадлежит пересечению */
     }
     else {
-      append(&c, &e, pa->i);
+      /* здесь pa.i = pb.i — данный элемент принадлежит пересечению */
+      append(&c, &e, pa->i); /* добавление элемента */
       pa = pa->n;
       pb = pb->n;
     }

@@ -1,32 +1,5 @@
-\documentclass{article}
-
-\usepackage[T2A]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[russian, english]{babel}
-\usepackage[left = 2cm]{geometry}
-\usepackage{listings}
-\usepackage{amssymb}
-\usepackage{caption}
-
-\renewcommand{\lstlistingname}{\textbf{Алгоритм}}
-\DeclareCaptionFormat{listing}{\par\vskip1pt#1#2#3}
-\captionsetup[lstlisting]{format=listing, singlelinecheck=false, labelfont=bf}
-
-\lstset{
-  language=C,
-  extendedchars=\true,
-  keepspaces=true,
-  breaklines=true,
-  frame=lines,
-  aboveskip=-5pt,
-  tabsize=1,
-  morekeywords={Вход:, Выход:, true, false, bool, NULL, vector, bitset}
-}
-
-\begin{document}
-
 \vspace{5pt} \hrule
-\begin{lstlisting}[caption={построение бинарного кода Грея}, label=p40_gray_binary_code, escapechar=\%]
+\begin{lstlisting}[caption={Построение бинарного кода Грея}, label=p40_gray_binary_code, escapechar=\%]
 %\noindent\textbf{Вход:} n $\geqslant$ 0 — мощность множества.\\%
 %\textbf{Выход:} последовательность кодов подмножеств В.%
 vector* gray_binary_code(int n) {
@@ -48,5 +21,3 @@ vector* gray_binary_code(int n) {
   return out;
 }
 \end{lstlisting}
-
-\end{document}

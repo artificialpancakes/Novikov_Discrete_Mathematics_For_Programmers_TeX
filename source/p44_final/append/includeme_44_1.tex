@@ -1,0 +1,16 @@
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Процедура Append — присоединение элемента в конец списка}, label=p44_append, escapechar=`]
+`\noindent\textbf{Вход:} указатель $c$ на первый элемент списка, указатель $e$ на последний элемент списка, добавляемый элемент $d$.\\`
+`\textbf{Выход:} указатель $c$ на первый элемент списка, указатель $e$ на последний элемент списка.`
+void append(elem **c, elem **e, int d) {
+  elem *q = malloc(sizeof(elem)); /* новый элемент списка */
+  q->i = d; q->n = NULL;
+  if ((*c) == NULL) {
+    (*c) = q; /* пустой список */
+  }
+  else {
+    (*e)->n = q; /* непустой список */
+  }
+  (*e) = q;
+}
+\end{lstlisting}
