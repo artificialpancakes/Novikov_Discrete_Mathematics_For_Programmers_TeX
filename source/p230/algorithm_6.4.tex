@@ -1,0 +1,43 @@
+\documentclass[10pt, a5paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian, english]{babel}
+\usepackage[left = 2cm, right = 2cm, top = 2cm, bottom = 2cm]{geometry}
+\usepackage{listings}
+
+\begin{document}
+\lstset{
+language = C,
+extendedchars = \true,
+keepspaces = true,
+morekeywords = {true, false, bool, NULL},
+basicstyle = \fontsize{7}{9}\selectfont,
+commentstyle = \fontsize{7}{9}\selectfont,
+frame = b}
+
+\noindent\textbf{Алгоритм 6.4} Распаковка по методу Лемпела - Зива\\
+\textbf{Вход:} сжатый текст, представленный массивом пар
+g: \textbf{array} [1..m] \textbf{of record} p: \textbf{int};
+q: \textbf{char end record}, где p - номер слова в словаре, q - код дополняющей буквы.\\
+\textbf{Выход:} исходный текст, заданный последовательностью строк и символов.
+\begin{lstlisting}
+void unpack(int m, pair *g)
+{
+  char D[100][50];
+  D[0][0] = '\0';
+  int d = 0; /* начальное состояние словаря */
+  for(int k = 0; k < m; ++k)
+  {
+    int p = g[k].p; /* p - индекс слова в словаре */
+    int q = g[k].q; /* q - дополнительная буква */
+    push(Res, D[p], q);
+    /* добавление слова и еще одной буквы в вектор */
+    d = d + 1;
+    strcpy(D[d], D[p]);
+    int l = strlen(D[d]);
+    D[d][l] = q; /* пополнение словаря */
+  }
+}
+\end{lstlisting}
+\end{document}
