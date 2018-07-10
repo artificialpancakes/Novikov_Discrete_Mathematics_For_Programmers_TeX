@@ -1,0 +1,52 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian, english]{babel}
+\usepackage[left = 2cm]{geometry}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{caption}
+
+\renewcommand{\lstlistingname}{\textbf{Алгоритм}}
+\DeclareCaptionFormat{listing}{\par\vskip1pt#1#2#3}
+\captionsetup[lstlisting]{format=listing, singlelinecheck=false, labelfont=bf}
+
+\lstset{
+  language=C,
+  extendedchars=\true,
+  keepspaces=true,
+  breaklines=true,
+  frame=lines,
+  aboveskip=-5pt,
+  tabsize=1,
+  morekeywords={Вход:, Выход:, true, false, bool, NULL, vector, bitset}
+}
+
+\begin{document}
+
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={построение бинарного кода Грея}, label=gray_binary_code, escapechar=\%]
+%\noindent\textbf{Вход:} n $\geqslant$ 0 — мощность множества.\\%
+%\textbf{Выход:} последовательность кодов подмножеств В.%
+vector* gray_binary_code(int n) {
+  vector *out = vector_create(); /* последовательность кодов подмножеств B */
+  bitset *B = bitset_create(n); /* битовая шкала для представления подмножеств */
+  for (int i = 0; i < n; i++) {
+    bitset_set(B, i, 0); /* инициализация */
+  }
+  vector_push_back(out, B); /* пустое множество */
+
+  for (int i = 1; i < pow(2, n); i++) {
+    /* определение номера элемента, подлежащего добавлению или удалению */
+    int p = Q(i);
+    /* добавление или удаление элемента */
+    bitset_set(B, p, 1 - bitset_get(B, p));
+    vector_push_back(out, B);
+  }
+
+  return out;
+}
+\end{lstlisting}
+
+\end{document}

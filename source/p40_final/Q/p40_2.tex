@@ -1,0 +1,41 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian, english]{babel}
+\usepackage[left = 2cm]{geometry}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{caption}
+
+\renewcommand{\lstlistingname}{\textbf{Алгоритм}}
+\DeclareCaptionFormat{listing}{\par\vskip1pt#1#2#3}
+\captionsetup[lstlisting]{format=listing, singlelinecheck=false, labelfont=bf}
+
+\lstset{
+  language=C,
+  extendedchars=\true,
+  keepspaces=true,
+  breaklines=true,
+  frame=lines,
+  aboveskip=-5pt,
+  tabsize=1,
+  morekeywords={Вход:, Выход:, true, false, bool, NULL, vector, bitset}
+}
+
+\begin{document}
+
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Функция Q определения номера изменяемого разряда}, label=gray_binary_code, escapechar=`]
+`\noindent\textbf{Вход:} i — номер подмножества.\\`
+`\textbf{Выход:} номер изменяемого разряда.`
+int Q(int i) {
+  int q = 1; int j = 1;
+  while (j % 2 == 0) {
+    j = j / 2; q++;
+  }
+  return q;
+}
+\end{lstlisting}
+
+\end{document}
