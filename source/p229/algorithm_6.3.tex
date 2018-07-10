@@ -1,0 +1,43 @@
+\documentclass[10pt, a5paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian, english]{babel}
+\usepackage[left = 2cm, right = 2cm, top = 2cm, bottom = 2cm]{geometry}
+\usepackage{listings}
+
+\begin{document}
+\lstset{
+language = C,
+extendedchars = \true,
+keepspaces = true,
+morekeywords = {true, false, bool, NULL},
+basicstyle = \fontsize{7}{9}\selectfont,
+commentstyle = \fontsize{7}{9}\selectfont,
+frame = b}
+
+\noindent\textbf{Алгоритм 6.3} Упаковка по методу Лемпела - Зива\\
+\noindent\textbf{Вход:} исходный текст, заданный массивом кодов символов f:
+\textbf{array} [1..n] of \textbf{char}\\
+\noindent\textbf{Выход:} сжатый текст, представленный последовательностью пар <p, q>,
+где p - номер слова в словаре, q - код дополняющей буквы
+\begin{lstlisting}
+void pack(int n, char *f)
+{
+  D[0][0] = '\0';
+  d = 0; /* начальное состояние словаря */
+  int k = 0; /* номер текущей буквы в исходном тексте */
+  while(k < n)
+  {
+    int p = FD(k, f); /* индекс найденного слова в словаре */
+    int l = Length(p); /* l - длинна найденного слова в словаре */
+    push(Res, p, f[k + l]);
+    /* код найденного слова и еще одна буквы добавляются в вектор */
+    d = d + 1;
+    strcpy(D[d], D[p]);
+    D[d][l] = f[k + l]; /* пополнение словаря */
+    k = k + l + 1; /* продвижение вперед по исходному тексту */
+  }
+}
+\end{lstlisting}
+\end{document}
