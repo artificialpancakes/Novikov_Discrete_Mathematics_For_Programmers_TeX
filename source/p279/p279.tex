@@ -47,7 +47,7 @@ void max_flow(int p, int s, int t, int C[p][p], F[p][p])
 		P[v].n = 0;
 		P[v].d = 0;
 	}
-	S[s] = 1; /* так как $s \in S$ */
+	S[s] = 1; /* так как %$s \in S$% */
 	P[s].s = '+';
 	P[s].n = 0;
 	P[s].d = DBL_MAX;
