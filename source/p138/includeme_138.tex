@@ -1,32 +1,3 @@
-\documentclass{article}
-
-\usepackage[T2A]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[russian]{babel}
-\usepackage[left = 2cm]{geometry}
-\usepackage{listings}
-\usepackage{amssymb}
-\usepackage{caption}
-
-\addto\captionsrussian{
-  \renewcommand{\lstlistingname}{Алгоритм}
-}
-\DeclareCaptionFormat{listing}{\par#1#2#3}
-\captionsetup[lstlisting]{format=listing, singlelinecheck=false, labelfont=bf}
-
-\lstset{
-  language=C,
-  extendedchars=\true,
-  keepspaces=true,
-  breaklines=true,
-  frame=lines,
-  aboveskip=-5pt,
-  tabsize=1,
-  morekeywords={Вход:, Выход:, true, false, NULL, bool, vector, bitset, tree_node}
-}
-
-\begin{document}
-
 \vspace{5pt} \hrule
 
 \begin{lstlisting}[caption={Вычисление значения функции по сокращённому дереву решений}, label=p138_calc_function, escapechar=`]
@@ -47,5 +18,3 @@ bool calc_func(tree_node *T, int n, int *x) {
   }
 }
 \end{lstlisting}
-
-\end{document}
