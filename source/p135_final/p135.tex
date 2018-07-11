@@ -1,0 +1,70 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[left = 2cm]{geometry}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{caption}
+
+\addto\captionsrussian{
+  \renewcommand{\lstlistingname}{Алгоритм}
+}
+\DeclareCaptionFormat{listing}{\par#1#2#3}
+\captionsetup[lstlisting]{format=listing, singlelinecheck=false, labelfont=bf}
+
+\lstset{
+  language=C,
+  extendedchars=\true,
+  keepspaces=true,
+  breaklines=true,
+  frame=lines,
+  aboveskip=-5pt,
+  tabsize=1,
+  morekeywords={Вход:, Выход:, true, false, NULL, bool, vector, bitset}
+}
+
+\begin{document}
+
+\vspace{5pt} \hrule
+
+\begin{lstlisting}[caption={Вычисление номера кортежа в установленном порядке}, label=p134_calc_cortege_number, escapechar=`]
+`\noindent\textbf{Вход:} вектор $x$ : \textbf{array} [1..$n$] \textbf{of string} идентификаторов переменных, вектор F : \textbf{array} [0..$2^n - 1$] \textbf{of} 0..1 значений функции при установленном порядке кортежей.\\`
+`\textbf{Выход:} последовательность символов, образующих запись формулы СДНФ для заданной функции.`
+vector* pdnf_construction(int n, char **x, int *F) {
+  /* последовательность символов,
+  образующих запись формулы СДНФ для заданной функции. */
+  vector *out = vector_create();
+  bool f = false; /* признак присутствия левого операнда дизъюнкции */
+  for (int i = 0; i < pow(2, n); i++) {
+    if (F[i] == 1) {
+      if (f) {
+        /* добавление в формулу знака дизъюнкции */
+        vector_push_back(out, "`$\vee$`");
+      } else {
+        f = true; /* это первое слагаемое в дизъюнкции */
+      }
+      bool g = false; /* признак присутствия левого операнда конъюнкции */
+      for (int j = 1; j <= n; j++) {
+        if (g) {
+          /* добавление в формулу знака конъюнкции */
+          vector_push_back(out, "`$\wedge$`");
+        } else {
+          g = true; /* это первый сомdножитель в конъюнкции */
+        }
+        int v = (i >> (j - 1)) % 2;
+        if (v == 0) {
+          /* добавление в формулу знака отрицания */
+          vector_push_back(out, "`$\neg$`");
+        }
+        /* добавление в формулу идентификатора переменной */
+        vector_push_back(out, x[j - 1]);
+      }
+    }
+  }
+  return out;
+}
+\end{lstlisting}
+
+\end{document}
