@@ -1,0 +1,46 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage[left = 2cm]{geometry}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{caption}
+
+\lstset{
+  language=C,
+  extendedchars=\true,
+  keepspaces=true,
+  breaklines=true,
+  aboveskip=-5pt,
+  tabsize=1,
+  morekeywords={Вход:, Выход:, true, false, bool, NULL}
+}
+
+\begin{document}
+
+\begin{lstlisting}[escapechar=\%]
+%\noindent\textbf{Вход:} входные слова $\alpha$: \textbf{array} [1..s] \textbf{of} \{a, b\} и $\beta$: \textbf{array} [1..t] \textbf{of} \{a, b\}.%
+%\textbf{Выход:} значение выражения $\alpha = \beta$ в полугруппе $\rho$.%
+bool check_equality_word(int s, int t, char a[s], char b[t])
+{
+	if(a[0] != b[0])
+		return false; /* первые буквы не совпадают */
+	int N_a = 0; /* счетчик изменений буквы в a */
+	for(int i = 1; i < s; ++i)
+	{
+		if(a[i] != a[i - 1])
+			N_a = N_a + 1; /* буква изменилась */
+	}
+	int N_b = 0; /* счетчик изменений буквы в b */
+	for(int i = 1; i < t; ++i)
+	{
+		if(b[i] != b[i - 1])
+			N_b = N_b + 1; /* буква изменилась */
+	}
+	return N_a == N_b; /* слова равны, если значения счетчиков одинаковы */
+}
+\end{lstlisting}
+
+\end{document}
