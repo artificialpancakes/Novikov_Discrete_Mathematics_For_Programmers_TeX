@@ -1,0 +1,31 @@
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Рекурсивная функция Unify}, label=p152_unify, escapechar=`]
+`\noindent\textbf{Вход:} формулы $A$ и $B$.\\`
+`\textbf{Выход:} \textbf{false}, если формулы не унифицируемы, или \textbf{true} и наиболее общий унификатор $S$.`
+enum formula_type { IMPL, NEG, VAR };
+bool Unify(formula *A, formula *B) {
+  if (f(A) == VAR) {
+    char *v = A->var; /* переменная */
+    formula *permutation = list_get(S, v);
+    if (permutation == NULL) {
+      list_set(S, v, B); /* то есть добавляем подстановку {B//v} */
+    }
+    else {
+      /* либо эта подстановка уже есть, либо унификация невозможна */
+      return permutation == B;
+    }
+  }
+  if (f(A) != f(B)) {
+    /* главные операции различны — унификация невозможна */
+    return false;
+  }
+  if (f(A) == NEG) {
+    /* пытаемся унифицировать операнды отрицаний */
+    return Unify(r(A), r(B));
+  }
+  if (f(A) == IMPL) {
+    /* пытаемся унифицировать операнды импликаций */
+    return Unify(l(A), l(B)) && Unify(r(A), r(B));
+  }
+}
+\end{lstlisting}

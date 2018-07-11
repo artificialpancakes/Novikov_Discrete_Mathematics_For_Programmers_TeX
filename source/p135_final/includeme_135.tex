@@ -1,6 +1,6 @@
 \vspace{5pt} \hrule
 
-\begin{lstlisting}[caption={Вычисление номера кортежа в установленном порядке}, label=p134_calc_cortege_number, escapechar=`]
+\begin{lstlisting}[caption={Построение СДНФ}, label=p135_pdnf_construction, escapechar=`]
 `\noindent\textbf{Вход:} вектор $x$ : \textbf{array} [1..$n$] \textbf{of string} идентификаторов переменных, вектор F : \textbf{array} [0..$2^n - 1$] \textbf{of} 0..1 значений функции при установленном порядке кортежей.\\`
 `\textbf{Выход:} последовательность символов, образующих запись формулы СДНФ для заданной функции.`
 vector* pdnf_construction(int n, char **x, int *F) {
