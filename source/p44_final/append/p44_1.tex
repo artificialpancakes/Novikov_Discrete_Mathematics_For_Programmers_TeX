@@ -8,7 +8,9 @@
 \usepackage{amssymb}
 \usepackage{caption}
 
-\renewcommand{\lstlistingname}{Алгоритм}
+\addto\captionsrussian{
+  \renewcommand{\lstlistingname}{Алгоритм}
+}
 \DeclareCaptionFormat{listing}{\par#1#2#3}
 \captionsetup[lstlisting]{format=listing, singlelinecheck=false, labelfont=bf}
 
