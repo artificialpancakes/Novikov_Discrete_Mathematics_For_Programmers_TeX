@@ -1,0 +1,20 @@
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Алгоритм вычисления значения СДНФ}, label=p_137, escapechar=\%]
+%\noindent\textbf{Вход:} массив, представляющий СДНФ: f: \textbf{array} [1..k,1..n] \textbf{of} 0..1; множество значений переменных x: \textbf{array} [1..n] \textbf{of} 0..1.\\%
+%\textbf{Выход:} 0..1 - значение булевой функции.%
+int calc_CDNF(int k, int n, int f[k][n], int x[n])
+{
+	for(int i = 0; i < k; ++i)
+	{
+		int flag = 0;
+		for(int j = 0; j < n; ++j)
+		{
+			if(f[i][j] != x[j])
+				flag = 1; /* %$x_j \neq\sigma_j\implies x_j^{\sigma_j} = 0\implies x_1^{\sigma_1} \land\ldots\land x_n^{\sigma_n} = 0$% */
+		}
+		if(flag) continue;
+		return 1; /* %$x_1^{\sigma_1} \,\&\ldots\&\, x_n^{\sigma_n} = 1 \implies \bigvee_{(\sigma_1, \,\dots\,, \sigma_m)} x_1^{\sigma_1} \land\ldots\land x_n^{\sigma_n} = 1$% */
+	}
+	return 0; /* все слагаемые в дизъюнкции равны нулю */
+}
+\end{lstlisting}
