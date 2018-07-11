@@ -1,0 +1,55 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage[left = 2cm]{geometry}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{caption}
+
+\addto\captionsrussian{
+  \renewcommand{\lstlistingname}{Алгоритм}
+}
+\DeclareCaptionFormat{listing}{\par\vskip1pt#1#2#3}
+\captionsetup[lstlisting]{format=listing, singlelinecheck=false, labelfont=bf}
+
+\lstset{
+  language=C,
+  extendedchars=\true,
+  keepspaces=true,
+  breaklines=true,
+  frame=lines,
+  aboveskip=-5pt,
+  tabsize=1,
+  morekeywords={Вход:, Выход:, true, false, bool, NULL, elem}
+}
+
+\begin{document}
+
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Вычисление пересечения слиянием}, label=p_45, escapechar=\%]
+%\noindent\textbf{Вход:} пересекаемые множества A и B, заданные указателями a и b.\\%
+%\textbf{Выход:} пересечение $C = A \cap B$, заданное указателем c.%
+elem *calc_intersection(elem *a, elem *b)
+{
+	elem *pa = a, *pb = b, *c = NULL, *e = NULL; /* инициализация */
+	while(pa != NULL && pb != NULL)
+	{
+		if(pa->i < pb->i)
+			pa = pa->n; /* элемент множества A не принадлежит пересечению */
+		else if(pa->i > pb->i)
+			pb = pb->n; /* элемент множества B не принадлежит пересечению */
+		else
+		{
+			/* здесь pa->i = pb->i - данный элемент принадлежит пересечению */
+			Append(c, e, pa->i) /* добавление элемента */
+			pa = pa->n;
+			pb = pb->n;
+		}
+	}
+	return c;
+}
+\end{lstlisting}
+
+\end{document}
