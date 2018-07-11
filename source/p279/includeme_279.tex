@@ -1,0 +1,75 @@
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Нахождение максимального потока}, label=p279_max_flow, escapechar=\%]
+%\noindent\textbf{Вход:} сеть G(V, E) с источником s и стоком t, заданная матрицей пропускных способностей C: \textbf{array} [1..p, 1..p] \textbf{of real}.\\%
+%\textbf{Выход:} матрица максимального потока F: \textbf{array} [1..p, 1..p] \textbf{of real}.%
+void max_flow(int p, int s, int t, int C[p][p], F[p][p])
+{
+	int N[p], S[p];
+	flow P[p];
+	for(int u = 0; u < p; ++u)
+		for(int v = 0; v < p; ++v)
+			F[u][v] = 0; /* вначале поток нулевой */
+	M: /* итерация увелечения потока */
+	for(int v = 0; v < p; ++v) /* инициализация */
+	{
+		S[v] = 0;
+		N[v] = 0;
+		P[v].s = '+';
+		P[v].n = 0;
+		P[v].d = 0;
+	}
+	S[s] = 1; /* так как $s \in S$ */
+	P[s].s = '+';
+	P[s].n = 0;
+	P[s].d = DBL_MAX;
+	do
+	{
+		a = 0; /* признак расширения S */
+		for(int v = 0; v < p; ++v)
+		{
+			if(S[v] == 1 && N[v] == 0)
+			{
+				for(int u = 0; u < p; ++u)
+				{
+					if(C[v][u] == 0) continue;
+					if((S[u] == 0) && (F[v][u] < C[v][u]))
+	  				{
+						S[u] = 1;
+						P[u].s = '+';
+						P[u].n = v;
+						P[u].d = min(P[v].d, C[v][u] - F[v][u]);
+						a = 1;
+					}
+				}
+				for(int u = 0; u < p; ++u)
+				{
+					if(C[u][v] == 0) continue;
+					if((S[u] == 0) && (F[u][v] > 0))
+					{
+						S[u] = 1;
+						P[u].s = '-';
+						P[u].n = v;
+						P[u].d = min(P[v].d, F[u][v]);
+						a = 1;
+					}
+				}
+				N[v] = 1; /* узел v отмечен */
+			}
+		}
+		if(S[t])
+		{
+			int x = t; /* текущий узел аргументальной цепи */
+			int d = P[t].d; /* величина изменения потока */
+			while(x != s)
+			{
+				if(P[x].s == '+')
+					F[P[x].n][x] = F[P[x].n][x] + d; /* увеличение потока */
+				else
+					F[x][P[x].n] = F[x][P[x].n] - d; /* увеличение потока */
+				x = P[x].n; /* предыдущий узел аргументальной цепи */
+			}
+			goto M;
+		}
+	} while(a != 0);
+}
+\end{lstlisting}
