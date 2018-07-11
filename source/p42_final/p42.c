@@ -20,7 +20,7 @@ elem *add(elem *l, int v)
 	return p;
 }
 
-int check_merge(elem *a, elem *b)
+int check_inclusion(elem *a, elem *b)
 {
 	elem *pa = a, *pb = b;
 
@@ -48,5 +48,5 @@ int main()
 	while(scanf("%d", &v) != EOF) a = add(a, v);
 	while(scanf("%d", &v) != EOF) b = add(b, v);
 
-	printf("%d\n", check_merge(a, b));
+	printf("%d\n", check_inclusion(a, b));
 }

@@ -1,0 +1,43 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage[left = 2cm]{geometry}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{caption}
+
+\addto\captionsrussian{
+  \renewcommand{\lstlistingname}{Алгоритм}
+}
+\DeclareCaptionFormat{listing}{\par\vskip1pt#1#2#3}
+\captionsetup[lstlisting]{format=listing, singlelinecheck=false, labelfont=bf}
+
+\lstset{
+  language=C,
+  extendedchars=\true,
+  keepspaces=true,
+  breaklines=true,
+  frame=lines,
+  aboveskip=-5pt,
+  tabsize=1,
+  morekeywords={Вход:, Выход:, true, false, bool, NULL}
+}
+
+\begin{document}
+
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Генерация всех подмножеств n-элементного множества}, label=p_39, escapechar=\%]
+%\noindent\textbf{Вход:} $n \geqslant 0$ - мощность множества.\\%
+%\textbf{Выход:} последовательность кодов подмножеств i.%
+int *create_subsets(int n)
+{
+	int s = pow(2, n), m[s];
+	for(int i = 0; i < s; ++i)
+		m[i] = i; /* код очередного подмножества */
+	return m;
+}
+\end{lstlisting}
+
+\end{document}

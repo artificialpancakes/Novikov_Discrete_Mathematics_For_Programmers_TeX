@@ -8,7 +8,7 @@ int main()
 
 	int s = pow(2, n), m[s];
 	for(int i = 0; i < pow(2, n); ++i)
-		m[i] = i; //код очередного подмножества
+		m[i] = i;
 
 	for(int i = 0; i < s; ++i)
 		printf("%d\n", m[i]);

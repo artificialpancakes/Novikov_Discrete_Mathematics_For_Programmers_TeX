@@ -1,0 +1,53 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage[left = 2cm]{geometry}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{caption}
+
+\addto\captionsrussian{
+  \renewcommand{\lstlistingname}{Алгоритм}
+}
+\DeclareCaptionFormat{listing}{\par\vskip1pt#1#2#3}
+\captionsetup[lstlisting]{format=listing, singlelinecheck=false, labelfont=bf}
+
+\lstset{
+  language=C,
+  extendedchars=\true,
+  keepspaces=true,
+  breaklines=true,
+  frame=lines,
+  aboveskip=-5pt,
+  tabsize=1,
+  morekeywords={Вход:, Выход:, true, false, bool, NULL, elem}
+}
+
+\begin{document}
+
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Проверка включения слиянием}, label=p_42, escapechar=\%]
+%\noindent\textbf{Вход:} Проверяемые множества A и B, которые заданы указателями a и b.\\%
+%\textbf{Выход:} \textbf{true}, если A $\subset$ B, в противном случае \textbf{false}.%
+bool check_inclusion(elem *a, elem *b)
+{
+	elem *pa = a, *pb = b; /* инициализация */
+	while(pa != NULL && pb != NULL)
+	{
+		if(pa->i < pb->i)
+			return false; /* элемент множества A отсутствует в множестве B */
+		else if(pa->i > pb->i)
+			pb = pb->n; /* элемент множества A, может быть, присутствует в множестве B */
+		else
+		{
+			pa = pa->n; /* здесь pa->i = pb->i, то есть */
+			pb = pb->n; /* элемент множества A точно присутствует в множестве B */
+		}
+	}
+	return pa == NULL; /* true, если A исчерпано, false - в противном случае */
+}
+\end{lstlisting}
+
+\end{document}
