@@ -1,0 +1,51 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage[left = 2cm]{geometry}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{caption}
+
+\addto\captionsrussian{
+  \renewcommand{\lstlistingname}{Алгоритм}
+}
+\DeclareCaptionFormat{listing}{\par\vskip1pt#1#2#3}
+\captionsetup[lstlisting]{format=listing, singlelinecheck=false, labelfont=bf}
+
+\lstset{
+  language=C,
+  extendedchars=\true,
+  keepspaces=true,
+  breaklines=true,
+  frame=lines,
+  aboveskip=-5pt,
+  tabsize=1,
+  morekeywords={Вход:, Выход:, true, false, bool, NULL, set, elem}
+}
+
+\begin{document}
+
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Метод резолюций}, label=p_176, escapechar=\%]
+%\noindent\textbf{Вход:} множество предложений C, полученных из множества формул S и формулы $\neg G$.\\%
+%\textbf{Выход:} \textbf{true} - если G выводимо из S, \textbf{false} - в противном случае.%
+bool method_of_resolution(set C)
+{
+	set M = C; /* M - текущее множество предложений */
+	while(1)
+	{
+		elem c1, c2;
+		Choose(M, c1, c2, p1, p2, o); /* выбор родительских предложений */
+		if(empty(c1) && empty(c2))
+			return false; /* нечего резольвировать - теорема опровергнута */
+		elem c = R(c1, c2, p1, p2, o); /* вычисление резольвенты */
+		add_elem(M, c); /* пополнение текущего множества */
+		if(empty(c)) break;
+	}
+	return true; /* теорема доказана */
+}
+\end{lstlisting}
+
+\end{document}
