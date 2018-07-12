@@ -1,0 +1,18 @@
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Определение расстояний от источника в бесконтурном графе}, label=p290, escapechar=\%]
+%\noindent\textbf{Вход:} орграф G(V, E), заданный матрицей длин дуг C: \textbf{array} [1..p,1..p] \textbf{of real} и списками предшествующих узлов $\Gamma^{-1}$; источник имеет номер 1.\\%
+%\textbf{Выход:} вектор T: \textbf{array} [1..p] \textbf{of real} длин кратчайших путей от источника.%
+void distance_from_source(int p, int C[p][p], T[p])
+{
+	for(int i = 0; i < p; ++i)
+		T[i] = C[1][i]; /* начальное приближение определяется матрицей */
+	for(int i = 1; i < p; ++i)
+	{
+		for(int j = 0; j < p; ++j)
+		{
+			if(C[j][i] == 0 || C[j][i] == INT_MAX) continue;
+			T[i] = min(T[i], T[j] + C[j][i]); /* пересчет оценки длины пути */
+		}
+	}
+}
+\end{lstlisting}
