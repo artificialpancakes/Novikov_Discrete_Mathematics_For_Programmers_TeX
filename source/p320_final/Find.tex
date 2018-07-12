@@ -1,0 +1,51 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage[left = 2cm]{geometry}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{caption}
+
+\lstset{
+  language=C,
+  extendedchars=\true,
+  keepspaces=true,
+  breaklines=true,
+  aboveskip=-5pt,
+  tabsize=1,
+  morekeywords={Вход:, Выход:, true, false, bool, NULL, node}
+}
+
+\begin{document}
+
+\begin{lstlisting}[escapechar=\%]
+%1. Поиск узла - функция Find.%
+%\noindent\textbf{Вход:} дерево сортировки T, заданное указателем на корень; ключ a: key.%
+%\textbf{Выход:} p - указатель на найденный узел или \textbf{NULL}, если в дереве нет такого ключа; q - указатель на отца узла p; s - способ подцепления узла q к узлу p (s = -1, если p слева от q; s = +1, если p справа от q; s = 0, если p - корень).%
+void Find(node *T, int a, node **p, node **q, int s)
+{
+	*p = T;
+	*q = NULL; /* инициализация */
+	s = 0;
+	while(*p != NULL)
+	{
+		if((*p)->i == a)
+			return;
+		*q = *p; /* сохранение значения p */
+		if(a < (*p)->i)
+		{
+			*p = (*p)->l; /* поиск слева */
+			s = -1;
+		}
+		else
+		{
+			*p = (*p)->r; /* поиск справа */
+			s = +1;
+		}
+	}
+}
+\end{lstlisting}
+
+\end{document}

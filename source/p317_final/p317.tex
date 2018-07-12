@@ -1,0 +1,70 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage[left = 2cm]{geometry}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{caption}
+
+\addto\captionsrussian{
+  \renewcommand{\lstlistingname}{Алгоритм}
+}
+\DeclareCaptionFormat{listing}{\par\vskip1pt#1#2#3}
+\captionsetup[lstlisting]{format=listing, singlelinecheck=false, labelfont=bf}
+
+\lstset{
+  language=C,
+  extendedchars=\true,
+  keepspaces=true,
+  breaklines=true,
+  frame=lines,
+  aboveskip=-5pt,
+  tabsize=1,
+  morekeywords={Вход:, Выход:, true, false, bool, NULL, node}
+}
+
+\begin{document}
+
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Вставка узла в дерево сортировки}, label=p317, escapechar=\%]
+%\noindent\textbf{Вход:} дерево сортировки T, заданное указателем на корень; ключ a: key.\\%
+%\textbf{Выход:} модифицированное дерево сортировки T.%
+node *add_node(node *T, int a)
+{
+	if(T == NULL)
+	{
+		T = NewNode(a); /* первый узел в дереве */
+		return T;
+	}
+	node *p = T; /* указатель на текущий узел */
+	while(1)
+	{
+		if(a == p->i)
+			return T; /* в дереве уже есть такой ключ */
+		if(a < p->i)
+		{
+			if(p->l == NULL)
+			{
+				p->l = NewNode(a); /* создаем новый узел */
+				return T; /* и подцепляем его к p слева */
+			}
+			else
+				p = p->l; /* продолжаем поиск места для вставки слева */
+		}
+		else if(a > p->i)
+		{
+			if(p->r == NULL)
+			{
+				p->r = NewNode(a); /* создаем новый узел */
+				return T; /* и подцепляем его к p справа */
+			}
+			else
+				p = p->r; /* продолжаем поиск места для вставки справа */
+		}
+	}
+}
+\end{lstlisting}
+
+\end{document}
