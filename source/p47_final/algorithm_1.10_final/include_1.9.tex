@@ -1,0 +1,14 @@
+\begin{lstlisting}[caption={Итератор объединения дизъюнктивных множеств}, label=p_47_iter_un_sets, escapechar=\%]
+void iter_diff_sets(elem *X, elem *Y)
+{
+	for(elem *x = X; x != NULL; x = x->n)
+	{
+		int flag = 0;
+		for(elem *y = Y; y != NULL; y = y->n)
+			if(x->i == y->i)
+				flag = 1;
+		if(flag == 1) continue; /* следующий x */
+		S(x); /* тело цикла */
+	}
+}
+\end{lstlisting}
