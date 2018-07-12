@@ -1,0 +1,39 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage[left = 2cm]{geometry}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{caption}
+
+\addto\captionsrussian{
+  \renewcommand{\lstlistingname}{Алгоритм}
+}
+\DeclareCaptionFormat{listing}{\par\vskip1pt#1#2#3}
+\captionsetup[lstlisting]{format=listing, singlelinecheck=false, labelfont=bf}
+
+\lstset{
+  language=C,
+  extendedchars=\true,
+  keepspaces=true,
+  breaklines=true,
+  frame=lines,
+  aboveskip=-5pt,
+  tabsize=1,
+  morekeywords={Вход:, Выход:, true, false, bool, NULL}
+}
+
+\begin{document}
+
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Генерация перестановок в антилексикографическом порядке}, label=p186_2, escapechar=\%]
+%\noindent\textbf{Вход:} n - количество элементов.\\%
+%\textbf{Выход:} последовательность перестановок элементов $1, \ldots, n$ в антилексикографическом порядке.%
+for(int i = 0; i < n; ++i)
+	P[i] = i; /* инициализация */
+Antilex(n); /* вызов рекурсивной процедуры Antilex */
+\end{lstlisting}
+
+\end{document}
