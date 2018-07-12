@@ -1,0 +1,25 @@
+\begin{lstlisting}[escapechar=\%]
+%\noindent\textbf{Вход:} $n$ - длина обрабатываемой части массива $P$, $j$ - номер "разделяемой" буквы.\\%
+%\textbf{Выход:} оптимальные коды в первых $n$ элементах массивов $C$ и $l$ .%
+void Down(int** C_arr, int *L, int n, int j){
+	int *C = (int*)C_arr;
+	int c[size];
+	for(int i = 0; i < size; i++)
+		c[i] = C[j * size + i]; /* запоминание кода буквы j */
+	int l = L[j]; /* и длины этого кода */
+	for(int i = j; i <= n - 1; i++){
+		for(int k = 0; k < size; k++){
+			C[i * size + k] = C[(i + 1) * size + k]; /* сдвиг кода */
+		}
+		L[i] = L[i + 1]; /* сдвиг длины */
+	}
+	for(int i = 0; i < size; i++){
+		C[(n - 1) * size + i] = c[i]; /* копирование кода буквы j */
+		C[(n) * size + i] = c[i];
+	}
+	C[(n - 1) * size + (l)] = 0; /* наращивание кодов */
+	C[(n) * size + (l)] = 1;
+	L[n - 1] = l + 1; /* наращивание длин */
+	L[n] = l + 1;
+}
+\end{lstlisting}
