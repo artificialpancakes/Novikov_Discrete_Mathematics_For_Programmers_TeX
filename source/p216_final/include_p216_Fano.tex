@@ -1,0 +1,18 @@
+\begin{lstlisting}[escapechar=\%]
+%\noindent\textbf{Вход:} $b$ - индекс начала обрабатываемой части массива $P$, $e$ - индекс конца обрабатываемой части $P$, $k$ - длина уже постоенных кодов в обрабтываемой части массива $C$.\\%
+%\textbf{Выход:} заполненный массив $C$.%
+void Fano(double *P, int **C, int b, int e, int k, int n){
+	int *C_arr = (int*)C;
+	if(e > b){
+		int m = Med(P, b, e);
+		for(int i = b; i <= e; i++){
+			if(i > m)
+				C_arr[i * n + k] = 1;
+			else
+				C_arr[i * n + k] = 0;
+		}
+		Fano(P, (int**)C, b, m, k + 1, n);
+		Fano(P, (int**)C, m + 1, e, k + 1, n);
+	}
+}
+\end{lstlisting}
