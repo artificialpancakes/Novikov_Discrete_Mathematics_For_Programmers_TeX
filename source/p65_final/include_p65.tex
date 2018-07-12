@@ -1,0 +1,23 @@
+\begin{lstlisting}[escapechar=\%]
+%\noindent\textbf{Вход:} множество $M$, отношение эквивалентности \equiv на $M$.\\%
+%\textbf{Выход:} Разбиение $\beta$ множества $M$.на классы эквивалентности.%
+vec* Bet = create(); /* вначале разбиение пусто */
+	vec* K = Bet;
+	for(int a = 0; a < M->size; a++){
+		p = 0;
+		for(vec* B = Bet->set; B != NULL; B = B->set){
+			b = sel(B); /* берем представителя из B */
+			if(ec(M->body[a], b)){
+				p = 2;
+				push(B, M->body[a]); /* пополняем существующий класс эквивалентности */
+				break; /* переходим к рассмотрению следующего элемента из М */
+			}
+		}
+		if(p == 0){
+			vec* class_a = create();
+			K->set = class_a;
+			K = class_a;
+			push(class_a, M->body[a]); /* вводим новый класс эквивалентности */
+		}
+}
+\end{lstlisting}
