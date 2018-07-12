@@ -1,12 +1,13 @@
 \vspace{5pt} \hrule
-\begin{lstlisting}[caption={Итератор пересечения множеств}, label=p_46, escapechar=\%]
+\begin{lstlisting}[caption={Итератор пересечения множеств}, label=p_46, escapechar=\`]
 for(elem *x = X; x != NULL; x = x->n)
 	{
-		int flag = 0;
 		for(elem *y = Y; y != NULL; y = y->n)
 		{
-			if(x->i == y->i)
-	                	printf("%d ", x->i);
+			if(x->i == y->i){
+	                	S(x); /* тело цикла */
+				break; /* следующий x */
+			}
                 }
 }
 \end{lstlisting}
