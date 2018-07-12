@@ -1,6 +1,6 @@
 \vspace{5pt} \hrule
 \begin{lstlisting}[caption={Алгоритм Дейкстры}, label=p286_dijkstra_1, escapechar=`]
-`\noindent\textbf{Вход:} орграф $G(V,E)$, заданный матрицей длин дуг \\$c$ : array [1..$p$, 1..$p$] \textbf{of real}; $s$ и $t$ — вершины графа.\\`
+`\noindent\textbf{Вход:} орграф $G(V,E)$, заданный матрицей длин дуг \\$c$ : \textbf{array} [1..$p$, 1..$p$] \textbf{of real}; $s$ и $t$ — вершины графа.\\`
 `\textbf{Выход:} векторы $T$ : \textbf{array} [1..$p$] \textbf{of real}; и $H$ : \textbf{array} [1..$p$] of 0..$p$. Если вершина $v$ лежит на кратчайшем пути от $s$ к $t$, то $T[v]$ — длина кратчайшего пути от $s$ к $v$; $H[v]$ — вершина, непосредственно предшествующая $v$ на кратчайшем пути.`
 result dijkstra_algorithm(int p, double *C, int s, int t) {
   result res;
