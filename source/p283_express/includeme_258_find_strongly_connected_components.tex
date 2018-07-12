@@ -1,0 +1,30 @@
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Выделение компонент сильной связности}, label=p283_scc, escapechar=`]
+`\noindent\textbf{Вход:} орграф $G(V,E)$, заданный списками смежности $\Gamma(v)$.\\`
+`\textbf{Выход:} последовательность вершин обхода.`
+list* find_strongly_connected_components(int p, adj_list **G) {
+  stack *T = stack_create();
+  list *C = list_create();
+  adj_list *M[p];
+  int e[p];
+  /* используем этот указатель, чтобы пометить вершину как удалённую из `$V$` */
+  adj_list *deleted = malloc(sizeof(adj_list));
+  for (int v = 0; v < p; v++) {
+     /* `$M[v]$` список узлов, входящих в ту же КСС, что и `$v$` */
+    adj_list_add(M[v], v);
+    e[v] = 0; /* все узлы не рассмотрены */
+  }
+  for (int i = 0; i < p; i++) {
+    if (G[i] == deleted) {
+      continue; /* узел удалён */
+    }
+    int v = i;
+    stack_push(T, v);
+    e[v] = 1;
+    /* SCC; вызов процедуры КСС */
+  }
+  free(deleted);
+  stack_destroy(T);
+  return C;
+}
+\end{lstlisting}

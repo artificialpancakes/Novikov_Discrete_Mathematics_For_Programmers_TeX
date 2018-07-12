@@ -1,0 +1,38 @@
+\begin{lstlisting}[escapechar=`]
+while (true) {
+  if (stack_size(T) == 0) {
+    break; /* негде выделять */
+  }
+  int v = stack_peek(T); /* v — верхний элемент стека */
+  if (G[v] == NULL) {
+    list_add(C, M[v]); /* это КСС */
+    stack_pop(T); /* снять узел v со стека */
+    continue; /* возврат из тупика */
+  }
+  else {
+    list_node *u_list = G[v];
+    while (u_list != NULL) {
+      int u = u_list->v;
+      u_list = u_list->n;
+      if (e[u] == 0) {
+        stack_push(T, u); /* положить узел u в стек */
+        e[u] = 1; /* отметить узел u */
+      }
+      else {
+        int w;
+        adj_list *buf = NULL
+        do {
+          w = stack_pop(T); /* w — склеиваемый узел */
+          buf = G[w];
+          G[w] = deleted; /* удалить узел */
+          adj_list_append(G[u], G[w]); /* запомнить смежность */
+          adj_list_append(M[u], M[w]); /* склеивание узлов */
+        } while (u != w);
+        stack_push(st, w); /* чтобы не убрать тот узел, */
+        G[v] = buf; /* с которого начали */
+      }
+      continue; /* поиск в глубину */
+    }
+  }
+}
+\end{lstlisting}
