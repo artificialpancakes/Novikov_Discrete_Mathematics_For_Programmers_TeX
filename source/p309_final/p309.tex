@@ -1,0 +1,53 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage[left = 2cm]{geometry}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{caption}
+
+\addto\captionsrussian{
+  \renewcommand{\lstlistingname}{Алгоритм}
+}
+\DeclareCaptionFormat{listing}{\par\vskip1pt#1#2#3}
+\captionsetup[lstlisting]{format=listing, singlelinecheck=false, labelfont=bf}
+
+\lstset{
+  language=C,
+  extendedchars=\true,
+  keepspaces=true,
+  breaklines=true,
+  frame=lines,
+  aboveskip=-5pt,
+  tabsize=1,
+  morekeywords={Вход:, Выход:, true, false, bool, NULL}
+}
+
+\begin{document}
+
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Проверка правильности скобочной структуры}, label=p309, escapechar=\%]
+%\noindent\textbf{Вход:} строка s: \textbf{array} [1..n] \textbf{of char}, возможно, содержащая скобки '(' и ')'.\\%
+%\textbf{Выход:} число 0, если скобочная структура правильна, или число в диапазоне 1..(n + 1), указывающее на позицию в строке, где скобочная структура нарушена.%
+int check_bracket(int n, char s[n])
+{
+	int p = 0; /* число прочитанных открывающих минус число закрывающих скобок */
+	for(int i = 0; i < n; ++i)
+	{
+		if(s[i] == '(')
+			p = p + 1; /* прочли открывающую скобку */
+		if(s[i] == ')')
+			p = p - 1; /* прочли закрывающую скобку */
+		if(p < 0)
+			return i + 1; /* лишняя закрывающая скобка */
+	}
+	if(p == 0)
+		return 0; /* скобочная структура правильна */
+	else
+		return n + 1; /* не хватает закрывающих скобок */
+}
+\end{lstlisting}
+
+\end{document}
