@@ -1,0 +1,35 @@
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Алгоритм Дейкстры}, label=p286_dijkstra_1, escapechar=`]
+`\noindent\textbf{Вход:} орграф $G(V,E)$, заданный матрицей длин дуг \\$c$ : array [1..$p$, 1..$p$] \textbf{of real}; $s$ - исходная вершина графа.\\`
+`\textbf{Выход:} вектор $T$ : \textbf{array} [1..$p$] \textbf{of real} длин кратчайших путей от $s$.`
+double* dijkstra_algorithm(int p, double *C, int s) {
+  double *T = malloc(sizeof(double) * p);
+  int X[p];
+  for (int i = 0; i < p; i++) {
+    /* начальное приближение определяется матрицей */
+    T[i] = C[s + i * p];
+    X[i] = 0; /* все вершины не отмечены */
+  }
+  for (int i = 0; i < p; i++) {
+    int v;
+    /* поиск конца нового кратчайшего пути */
+    double m = INFINITY;
+    for (int u = 0; u < p; u++) {
+      if ((X[u] == 0) && (T[u] < m)) {
+        /* вершина v заканчивает новый кратчайший путь из s */
+        v = u; m = T[u];
+      }
+    }
+    for (int u = 0; u < p; u++) {
+      double length = C[v + u * p];
+      if (length == INFINITY) {
+        continue;
+      }
+      /* пересчёт оценки длины пути из s в u через v */
+      T[u] = fmin(T[u], T[v] + length);
+    }
+    X[v] = 1; /* найден кратчайший путь из s в v */
+  }
+  return T;
+}
+\end{lstlisting}
