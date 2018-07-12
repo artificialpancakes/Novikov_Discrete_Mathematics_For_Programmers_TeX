@@ -1,0 +1,52 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage[left = 2cm]{geometry}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{caption}
+
+\addto\captionsrussian{
+  \renewcommand{\lstlistingname}{Алгоритм}
+}
+\DeclareCaptionFormat{listing}{\par\vskip1pt#1#2#3}
+\captionsetup[lstlisting]{format=listing, singlelinecheck=false, labelfont=bf}
+
+\lstset{
+  language=C,
+  extendedchars=\true,
+  keepspaces=true,
+  breaklines=true,
+  frame=lines,
+  aboveskip=-5pt,
+  tabsize=1,
+  morekeywords={Вход:, Выход:, true, false, bool, NULL}
+}
+
+\begin{document}
+
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Упаковка по методу Лемпела - Зива}, label=p229, escapechar=\%]
+%\noindent\textbf{Вход:} исходный текст, заданный массивом кодов символов f: \textbf{array} [1..n] \textbf{of char}.\\%
+%\textbf{Выход:} сжатый текст, представленный последовательностью пар <p, q>, где p - номер слова в словаре, q - код дополняющей буквы.%
+void pack(int n, char *f)
+{
+	D[0][0] = '\0';
+	d = 0; /* начальное состояние словаря */
+	int k = 0; /* номер текущей буквы в исходном тексте */
+	while(k < n)
+	{
+		int p = FD(k, f); /* индекс найденного слова в словаре */
+		int l = Length(p); /* l - длинна найденного слова в словаре */
+		push(Res, p, f[k + l]);	/* код найденного слова и еще одна буквы добавляются в вектор */
+		d = d + 1;
+		strcpy(D[d], D[p]);
+		D[d][l] = f[k + l]; /* пополнение словаря */
+		k = k + l + 1; /* продвижение вперед по исходному тексту */
+	}
+}
+\end{lstlisting}
+
+\end{document}

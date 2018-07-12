@@ -1,0 +1,45 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage[left = 2cm]{geometry}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{caption}
+
+\lstset{
+  language=C,
+  extendedchars=\true,
+  keepspaces=true,
+  breaklines=true,
+  aboveskip=-5pt,
+  tabsize=1,
+  morekeywords={Вход:, Выход:, true, false, bool, NULL}
+}
+
+\begin{document}
+
+\begin{lstlisting}[escapechar=\%]
+%\noindent\textbf{Вход:} k - номер символа в исходном тексте, начиная с которого нужно искать в тексте слова из словаря.%
+%\textbf{Выход:} p - индекс самого длинного слова в словаре, совпадающего с символами f[k]..f[k + l]. Если такого слова в словаре нет, то p = 0.%
+int FD(int k, char *f)
+{
+	int l = 0, p = 0; /* начальное состояние */
+	for(int i = 0; i < d; ++i)
+	{
+		int m = Length(i); /* длинна слова в словаре */
+		char s[m];
+		for(int j = 0; j < m; ++j)
+			s[j] = f[k + j];
+		if((m > l) && (strcmp(D[i], s) == 0))
+		{
+			p = i; /* нашли более подходящее слово */
+			l = m;
+		}
+	}
+	return p;
+}
+\end{lstlisting}
+
+\end{document}
