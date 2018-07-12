@@ -1,0 +1,52 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage[left = 2cm]{geometry}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{caption}
+
+\addto\captionsrussian{
+  \renewcommand{\lstlistingname}{Алгоритм}
+}
+\DeclareCaptionFormat{listing}{\par\vskip1pt#1#2#3}
+\captionsetup[lstlisting]{format=listing, singlelinecheck=false, labelfont=bf}
+
+\lstset{
+  language=C,
+  extendedchars=\true,
+  keepspaces=true,
+  breaklines=true,
+  frame=lines,
+  aboveskip=-5pt,
+  tabsize=1,
+  morekeywords={Вход:, Выход:, true, false, bool, NULL}
+}
+
+\begin{document}
+
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Бинарный поиск}, label=p316_bin_search, escapechar=\%]
+%\noindent\textbf{Вход:} упорядоченный массив A: \textbf{array} [1..n] \textbf{of record} k: key; i: info \textbf{end record}; ключ a: key.\\%
+%\textbf{Выход:} индекс записи с искомым ключом a в массиве A или 0, если записи с таким ключом нет.%
+int bin_search(int n, record A[n], int a)
+{
+	int b = 0; /* начальный индекс части массива для поиска */
+	int e = n - 1; /* конечный индекс части массива для поиска */
+	while(b <= e)
+	{
+		int c = (b + e)/2; /* индекс проверяемого элемента %(округленный до целого)% */
+		if(A[c].k > a)
+			e = c - 1; /* продолжаем поиск в первой половине */
+		else if(A[c].k < a)
+			b = c + 1; /* продолжаем поиск во второй половине */
+		else
+			return c + 1; /* нашли искомый ключ */
+	}
+	return 0; /* искомого ключа нет в массиве */
+}
+\end{lstlisting}
+
+\end{document}

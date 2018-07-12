@@ -1,0 +1,50 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage[left = 2cm]{geometry}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{caption}
+
+\addto\captionsrussian{
+  \renewcommand{\lstlistingname}{Алгоритм}
+}
+\DeclareCaptionFormat{listing}{\par\vskip1pt#1#2#3}
+\captionsetup[lstlisting]{format=listing, singlelinecheck=false, labelfont=bf}
+
+\lstset{
+  language=C,
+  extendedchars=\true,
+  keepspaces=true,
+  breaklines=true,
+  frame=lines,
+  aboveskip=-5pt,
+  tabsize=1,
+  morekeywords={Вход:, Выход:, true, false, bool, NULL, node}
+}
+
+\begin{document}
+
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Поиск узла в дереве сортировки}, label=p316_search_node, escapechar=\%]
+%\noindent\textbf{Вход:} дерево сортировки T, заданное указателем на корень; ключ a: key.\\%
+%\textbf{Выход:} указатель p на найденный узел или \textbf{NULL}, если в дереве нет такого ключа.%
+node *search_node(node *T, int a)
+{
+	node *p = T; /* указатель на проверяемый узел */
+	while(p != NULL)
+	{
+		if(a < p->i)
+			p = p->l; /* продолжаем поиск слева */
+		else if(a > p->i)
+			p = p->r; /* продолжаем поиск справа */
+		else
+			return p; /* нашли узел */
+	}
+	return NULL; /* искомого ключа нет в дереве */
+}
+\end{lstlisting}
+
+\end{document}
