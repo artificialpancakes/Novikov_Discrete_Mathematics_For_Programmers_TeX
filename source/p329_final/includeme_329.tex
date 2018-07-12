@@ -1,44 +1,3 @@
-\documentclass[11pt,b5paper,twoside,openany]{book}
-
-\usepackage[utf8]{inputenc}
-\usepackage[OT1]{fontenc}
-\usepackage[T2A]{fontenc}
-\usepackage[english, russian]{babel}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
-\newcommand\tab[1][1cm]{\hspace*{#1}}
-\usepackage{enumitem}
-\usepackage{listings}
-\pagestyle{headings}
-\usepackage{caption}
-
-\ifx\pdfoutput\undefined
-\usepackage{graphicx}
-\else
-\usepackage[pdftex]{graphicx}
-\fi
-
-\addto\captionsrussian{
-\renewcommand{\lstlistingname}{Алгоритм}
-}
-
-\DeclareCaptionFormat{listing}{\par\vskip1pt#1#2#3}
-\captionsetup[lstlisting]{format=listing, singlelinecheck=false, labelfont=bf}
-
-\lstset{
-language=C,
-extendedchars=\true,
-keepspaces=true,
-breaklines=true,
-frame=lines,
-aboveskip=-5pt,
-tabsize=1,
-morekeywords={Вход:, Выход:, true, false, bool, NULL, vector, list_node, result, INFINITY}
-}
-\begin{document}
-
 \vspace{5pt} \hrule
 \begin{lstlisting}[caption={Алгоритм Краскала}, label=p329_kruskal, escapechar=`]
 `\noindent\textbf{Вход:} список $E$ рёбер графа $G$ с длинами, упорядоченный в порядке возрастания длин.\\`
@@ -61,5 +20,3 @@ vector* kruskal_algorithm(int p, edge **E) {
   return T;
 }
 \end{lstlisting}
-
-\end{document}
