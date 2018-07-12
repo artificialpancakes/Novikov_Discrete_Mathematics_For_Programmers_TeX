@@ -31,7 +31,7 @@
 \begin{lstlisting}[caption={Поиск в ширину и в глубину}, label=p258_graph_search, escapechar=`]
 `\noindent\textbf{Вход:} граф $G(V,E)$, представленный списками смежности $\Gamma$.\\`
 `\textbf{Выход:} последовательность вершин обхода.`
-vector* graph_search(int p, list_node **G) {
+vector* graph_search(int p, adj_list **G) {
   vector *out = vector_create();
   T *t = T_create();
   int x[p];

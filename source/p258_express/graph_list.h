@@ -1,10 +1,10 @@
 #ifndef GRAPH_LIST_H
 #define GRAPH_LIST_H
 
-typedef struct list_node_ list_node;
+typedef struct list_node_ adj_list;
 struct list_node_ {
   int v;
-  list_node *n;
+  adj_list *n;
 };
 
 #endif

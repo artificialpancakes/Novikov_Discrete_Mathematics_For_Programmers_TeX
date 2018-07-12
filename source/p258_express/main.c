@@ -9,7 +9,7 @@
 #define push(T, t, i) T ## _push(t, i)
 #define pop(T, t) T ## _pop(t)
 #define is_empty(T, t) T ## _is_empty(t)
-vector* graph_search(int p, list_node **G) {
+vector* graph_search(int p, adj_list **G) {
   vector *out = vector_create();
   T *t = create(stack);
   int x[p];
@@ -36,7 +36,7 @@ vector* graph_search(int p, list_node **G) {
 }
 
 #ifdef TEST
-vector* graph_search(int p, list_node **G) {
+vector* graph_search(int p, adj_list **G) {
   vector *out = vector_create();
   T *t = T_create();
   int x[p];
