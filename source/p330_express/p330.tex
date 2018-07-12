@@ -1,0 +1,85 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage[left = 2cm]{geometry}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{caption}
+
+\addto\captionsrussian{
+  \renewcommand{\lstlistingname}{Алгоритм}
+}
+\DeclareCaptionFormat{listing}{\par\vskip1pt#1#2#3}
+\captionsetup[lstlisting]{format=listing, singlelinecheck=false, labelfont=bf}
+
+\lstset{
+  language=C,
+  extendedchars=\true,
+  keepspaces=true,
+  breaklines=true,
+  frame=lines,
+  aboveskip=-5pt,
+  tabsize=1,
+  morekeywords={Вход:, Выход:, true, false, bool, NULL, set}
+}
+
+\begin{document}
+
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Алгоритм Прима}, label=p330, escapechar=\%]
+%\noindent\textbf{Вход:} граф G(V, E), заданный матрицей длин ребер C.\\%
+%\textbf{Выход:} множество T ребер кратчайшего остова.%
+void algorithm_prima(int p, int C[p][p], set T)
+{
+	int a[p], b[p];
+	int u = rand() %\%% p; /* выбираем произвольную вершину */
+	set S = create();
+	S = add(S, u); /* S - множество вершин, включенных в кратчайший остов */
+	T = empty(); /* T - множество ребер, включенных в кратчайший остов */
+	for(int v = 0; v < p; ++v)
+	{
+		if(v == u) continue;
+		if(C[u][v] != 0)
+		{
+			a[v] = u; /* u - ближайшая вершина остова */
+			b[v] = C[u][v]; /* C[u][v] - длина соответствующего ребра */
+		}
+		else
+		{
+			a[v] = 0; /* ближайшая вершина остова неизвестна */
+			b[v] = INT_MAX; /* и расстояние также неизвестно */
+		}
+	}
+	for(int i = 0; i < p - 1; ++i)
+	{
+		int x = INT_MAX, w; /* начальное значение для поиска ближайшей вершины */
+		for(int v = 0; v < p; ++v)
+		{
+			if(include(S, v)) continue;
+			if(b[v] < x)
+			{
+				w = v; /* нашли более близкую вершину */
+				x = b[v]; /* и расстояние до нее */
+			}
+		}
+		S = add(S, w); /* добавляем найденную вершину в остов */
+		T = add(T, a[w], w); /* добавляем найденное ребро в остов */
+		for(int v = 0; v < p; ++v)
+		{
+			if(C[v][w] == 0) continue;
+			if(!include(S, v))
+			{
+				if(b[v] > C[v][w])
+				{
+					a[v] = w; /* изменяем ближайшую вершину остова */
+					b[v] = C[v][w]; /* и длину ведущего к ней ребра */
+				}
+			}
+		}
+	}
+}
+\end{lstlisting}
+
+\end{document}
