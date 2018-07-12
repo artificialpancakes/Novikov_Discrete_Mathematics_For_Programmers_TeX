@@ -1,0 +1,21 @@
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Распаковка по методу Лемпела - Зива}, label=p230_2, escapechar=\%]
+%\noindent\textbf{Вход:} сжатый текст, представленный массивом пар g: \textbf{array} [1..m] \textbf{of record} p: \textbf{int}; q: \textbf{char end record}, где p - номер слова в словаре, q - код дополняющей буквы.\\%
+%\textbf{Выход:} исходный текст, заданный последовательностью строк и символов.%
+void unpack(int m, pair *g)
+{
+	char D[100][50];
+	D[0][0] = '\0';
+	int d = 0; /* начальное состояние словаря */
+	for(int k = 0; k < m; ++k)
+	{
+		int p = g[k].p; /* p - индекс слова в словаре */
+		int q = g[k].q; /* q - дополнительная буква */
+		push(Res, D[p], q); /* добавление слова и еще одной буквы в вектор */
+		d = d + 1;
+		strcpy(D[d], D[p]);
+		int l = strlen(D[d]);
+		D[d][l] = q; /* пополнение словаря */
+	}
+}
+\end{lstlisting}
