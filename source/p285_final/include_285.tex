@@ -1,0 +1,38 @@
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Алгоритм Флойда}, label=p285, escapechar=\%]
+%\noindent\textbf{Вход:} матрица C[1..p,1..p] длин дуг.\\%
+%\textbf{Выход:} матрица T[1..p,1..p] длин путей и матрица H[1..p,1..p] самих путей.%
+void floyd_algorithm(int p, int C[p][p], T[p][p], H[p][p])
+{
+	for(int i = 0; i < p; ++i)
+	{
+		for(int j = 0; j < p; ++j)
+		{
+			T[i][j] = C[i][j]; /* инициализация */
+			if(C[i][j] == INT_MAX)
+				H[i][j] = 0; /* нет дуги из i в j */
+			else
+				H[i][j] = j; /* есть дуга из i в j */
+		}
+	}
+	for(int i = 0; i < p; ++i)
+	{
+		for(int j = 0; j < p; ++j)
+		{
+			for(int k = 0; k < p; ++k)
+			{
+				if(i != j && T[j][i] != INT_MAX && i != k && T[i][k] != INT_MAX && (T[j][k] == INT_MAX || T[j][k] > (T[j][i] + T[i][k])))
+				{
+					H[j][k] = H[j][i]; /* запомнить новый путь */
+					T[j][k] = T[j][i] + T[i][k]; /* и его длину */
+				}
+			}
+		}
+		for(int j = 0; j < p; ++j)
+		{
+			if(T[j][j] < 0)
+				return; /* нет решения: вершина j входит в цикл отрицательной длины */
+		}
+	}
+}
+\end{lstlisting}
