@@ -1,0 +1,96 @@
+\documentclass[11pt,b5paper,twoside,openany]{book}
+
+\usepackage[utf8]{inputenc}
+\usepackage[OT1]{fontenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english, russian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\usepackage{enumitem}
+\usepackage{listings}
+\pagestyle{headings}
+\usepackage{caption}
+
+\ifx\pdfoutput\undefined
+\usepackage{graphicx}
+\else
+\usepackage[pdftex]{graphicx}
+\fi
+
+\addto\captionsrussian{
+\renewcommand{\lstlistingname}{Алгоритм}
+}
+
+\DeclareCaptionFormat{listing}{\par\vskip1pt#1#2#3}
+\captionsetup[lstlisting]{format=listing, singlelinecheck=false, labelfont=bf}
+
+\lstset{
+language=C,
+extendedchars=\true,
+keepspaces=true,
+breaklines=true,
+frame=lines,
+aboveskip=-5pt,
+tabsize=1,
+morekeywords={Вход:, Выход:, true, false, bool, NULL, vector, list_node, result, INFINITY}
+}
+\begin{document}
+
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Алгоритм Дейкстры}, label=p286_dijkstra_1, escapechar=`]
+`\noindent\textbf{Вход:} орграф $G(V,E)$, заданный матрицей длин дуг \\$c$ : array [1..$p$, 1..$p$] \textbf{of real}; $s$ и $t$ — вершины графа.\\`
+`\textbf{Выход:} векторы $T$ : \textbf{array} [1..$p$] \textbf{of real}; и $H$ : \textbf{array} [1..$p$] of 0..$p$. Если вершина $v$ лежит на кратчайшем пути от $s$ к $t$, то $T[v]$ — длина кратчайшего пути от $s$ к $v$; $H[v]$ — вершина, непосредственно предшествующая $v$ на кратчайшем пути.`
+result dijkstra_algorithm(int p, double *C, int s, int t) {
+  result res;
+  double *T = malloc(sizeof(double) * p);
+  int *H = malloc(sizeof(int) * p);
+  res.T = T; res.H = H;
+  double X[p];
+  for (int i = 0; i < p; i++) {
+    T[i] = INFINITY; /* кратчайший путь неизвестен */
+    X[i] = 0; /* все вершины не отмечены */
+  }
+  H[s] = -1; /* ничего не предшествует */
+  T[s] = 0; /* кратчайший путь имеет длину 0, */
+  X[s] = 1; /* и он известен */
+  int v = s; /* текущая вершина */
+  M: /* обновление пометок */
+  for (int u = 0; u < p; u++) {
+    double length = C[v + u * p];
+    if (length == INFINITY) {
+      continue;
+    }
+    if ((X[u] == 0) && (T[u] > (T[v] + length))) {
+      /* найден более короткий путь из s в u через v */
+      T[u] = T[v] + length;
+      H[u] = v; /* запоминаем его */
+    }
+  }
+  double m = INFINITY; v = -1;
+  /* поиск конца кратчайшего пути */
+  for (int u = 0; u < p; u++) {
+    if (X[u] == 0 && T[u] < m) {
+      /* вершина v заканчивает кратчайший путь из s */
+      v = u; m = T[u];
+    }
+  }
+  if (v == t) {
+    /* нет пути из s в t */
+    res.flag = 0;
+    return res;
+  }
+  if (v == -1) {
+    /* найден кратчайший путь из s в t */
+    res.flag = -1;
+    return res;
+  }
+  /* найден кратчайший путь из s в v */
+  X[v] = 1;
+  goto M;
+}
+\end{lstlisting}
+
+\end{document}
