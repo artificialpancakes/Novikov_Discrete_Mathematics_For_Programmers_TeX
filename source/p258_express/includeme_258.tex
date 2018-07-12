@@ -1,0 +1,32 @@
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Поиск в ширину и в глубину}, label=p258_graph_search, escapechar=`]
+`\noindent\textbf{Вход:} граф $G(V,E)$, представленный списками смежности $\Gamma$.\\`
+`\textbf{Выход:} последовательность вершин обхода.`
+vector* graph_search(int p, list_node **G) {
+  vector *out = vector_create();
+  T *t = T_create();
+  int x[p];
+  for (int i = 0; i < p; i++) {
+    x[i] = 0; /* вначале все вершины не отмечены */
+  }
+  int v = 0; /* начало обхода - произвольная вершина */
+  T_push(t, v); /* помещаем `$v$` в структуру данных `$T$`... */
+  x[v] = 1; /* ... и отмечаем вершину `$v$` */
+  do {
+    int u = T_pop(t); /* извлекаем вершину из структуры данных `$T$`... */
+    /* ... и возвращаем её в качестве очередной пройденной вершины */
+    vector_push_back(out, u);
+    list_node *iter = G[u];
+    while (iter != NULL) {
+      int w = iter->v;
+      iter = iter->n;
+      if (x[w] == 0) {
+        T_push(t, w); /* помещаем `$w$` в структуру данных `$T$`... */
+        x[w] = 1; /* ... и отмечаем вершину `$w$` */
+      }
+    }
+  } while (T_is_empty(t) != 0);
+  T_destroy(t);
+  return out;
+}
+\end{lstlisting}
