@@ -1,0 +1,20 @@
+\vspace{5pt} \hrule
+
+\begin{lstlisting}[caption={Генерация $n$-элементарных подмножеств $m$-элементарного множества}, label=p138_calc_function, escapechar=`]
+\noindent\textbf{Вход:} $n$ - мощность подмножества, $m$ - мощность множества, $m>n>0$.
+\textbf{Выход:} последовательность всех $n$-элементных подмножеств m-элементного множества в лексикографическом порядке.
+bool calc_func(tree_node *T, int n, int *x) {
+  for (int i = 0; i < n; i++) {
+    if (T->l == NULL && T->r == NULL) {
+      return T->i; /* листовой узел — возвращаем значениe */
+    }
+    else {
+      if (x[i]) {
+        T = T->r; /* 1 — переход вправо */
+      } else {
+        T = T->l; /* 0 — переход влево */
+      }
+    }
+  }
+}
+\end{lstlisting}
