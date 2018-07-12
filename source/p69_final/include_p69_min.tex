@@ -1,0 +1,10 @@
+\begin{lstlisting}[escapechar=\%]
+%\noindent\textbf{Вход:} конечное частично упорядоченное множество $U$.\\%
+%\textbf{Выход:} минимальный элемент $m$.%
+  el_d* m = U->front; /* выбираем любой элемент в качестве кандидата в минимальные */
+  for(el_d* u = U->front; u != NULL; u = u->next){
+    if(u->val < m->val)
+      m = u; /* меняем кандидата */
+  }
+  return m; /* элемент m минимальный */
+\end{lstlisting}
