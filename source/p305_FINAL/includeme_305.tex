@@ -1,0 +1,8 @@
+\vspace{5pt} \hrule
+
+\begin{lstlisting}[caption={Построение кода упорядоченного ордерева}, label=p305, escapechar=`]
+`\noindent\textbf{Вход:} Нетривиальное упорядоченное ордерево $T$, заданное списками смежности $\Gamma$ : \textbf{array} [1..$p$] \textbf{of} $\uparrow$ $N$,\\ где $N$ = \textbf{record} $v$ : 1..$p$; n : $\uparrow N$ \textbf{end record},\\ причём узлы перенумерованы в прямом порядке.\\`
+`\textbf{Выход:} Массив $C$ : \textbf{array} [1..2$q$] of 0..1, являющийся кодом ордерева $T$.`
+ `$i$`: = 0 { количество заполненных разрядов кода }
+ TraverseTree(1) { корневой узел имеет номер 1 }
+\end{lstlisting}

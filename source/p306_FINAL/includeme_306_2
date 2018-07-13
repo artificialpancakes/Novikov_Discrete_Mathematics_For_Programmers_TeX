@@ -1,0 +1,22 @@
+\vspace{5pt} \hrule
+
+\begin{lstlisting}[caption={Восстановление упорядоченного ордерева по коду}, label=p306, escapechar=`]
+`\noindent\textbf{Вход:} Массив $C$: array [1..$2q$] of 0..1 — код упорядоченного ордерева $T$.\\`
+`\textbf{Выход:} Массив $\Gamma$ : \textbf{array}  [1..$p$] \textbf{of} $\uparrow N$ , где $N$ = \textbf{record} $v$: 1..$p$; $n$ : $\uparrow N$ \textbf{end record} — списки смежности упорядоченного ордерева $T$.`
+ `$p$` := 1 { счётчик узлов }
+ `$\Gamma [1]$` = nil { корень }
+ `$n$` : = 1 { текущий узел }
+  for `$i$` from 1 to 2`$q$` do
+   if `$C[i$` = 1 then
+    `$p$` := `$p$` + 1 { номер нового узла }
+    `$\Gamma [p]$` = nil { новый узел пока листовой }
+    { дуга от текущего узла к новому узлу }
+    `$d$` := NewNode(`$p$`, nil)
+    Append (`$\Gamma [n], d$`) { добавить узел в список смежности }
+    `$n \rightarrow S$` { положить номер текущего узла на стек }
+    `$n := p$` { перейти в новый узел }
+   else
+    `$n \leftarrow S$` { снять со стека и перейти в новый узел }
+   end if
+  end for
+\end{lstlisting}
