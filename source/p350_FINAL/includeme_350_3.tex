@@ -1,0 +1,10 @@
+\begin{lstlisting}[escapechar=`]
+`\noindent\textbf{Вход:} независимое множество $S$ и проверяемая вершина $v$.\\`
+`\textbf{Выход:} \textbf{true}, если множество $S + v$ независимое, \textbf{false} — в противном случае.`
+ for `$u \in S$` do
+  if `$(u, v) \in E$` then
+   return false { множество `$S + v$` зависимое }
+  end if
+ end for
+ return true { множество `$S + v$` независимое }
+\end{lstlisting}
