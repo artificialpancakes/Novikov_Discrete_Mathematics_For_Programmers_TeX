@@ -32,14 +32,14 @@ int vector_compare(vector *a, vector *b) {
   return 0;
 }
 
-vector *greedy_algorithm(vector *E, family *Eps) {
+vector *greedy_algorithm(vector *E, int n, vector **Eps) {
   vector *X = vector_create();
   for (int i = 0; i < vector_size(E); i++) {
     int e = vector_get_element_at(E, i);
     vector_push_back(X, e);
     int flag = 0;
-    for (int j = 0; j < vector_size(Eps); j++) {
-      vector *subset = family_get_element_at(Eps, j);
+    for (int j = 0; j < n; j++) {
+      vector *subset = Eps[j];
       if (vector_compare(subset, X) == 0) { // B + e in Eps
         flag = 1;
         break;
@@ -49,6 +49,7 @@ vector *greedy_algorithm(vector *E, family *Eps) {
       vector_pop(X);
     }
   }
+  return X;
 }
 \end{lstlisting}
 \end{document}
