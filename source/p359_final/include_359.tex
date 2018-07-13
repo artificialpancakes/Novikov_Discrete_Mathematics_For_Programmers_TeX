@@ -1,0 +1,26 @@
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Алгоритм последовательного раскрашивания}, label=p359, escapechar=\%]
+%\noindent\textbf{Вход:} граф G.\\%
+%\textbf{Выход:} раскраска графа - массив C: \textbf{array} [1..p] \textbf{of} 1..p.%
+void coloring_graph(int p, int G[p][p], int C[p])
+{
+	for(int v = 0; v < p; ++v)
+		C[v] = 0; /* все вершины не раскрашены */
+	for(int v = 0; v < p; ++v)
+	{
+		int A[p];
+		for(int i = 0; i < p; ++i)
+			A[p] = p; /* все цвета */
+		for(int u = 0; u < p; ++u)
+		{
+			if(G[v][u] == 0) continue;
+			for(int i = 0; i < p; ++i)
+			{
+				if(A[i] == C[u])
+					A[i] = -1; /* занятые для вершины v цвета */
+			}
+		}
+		C[v] = min(p, A); /* минимальный свободный цвет */
+	}
+}
+\end{lstlisting}
