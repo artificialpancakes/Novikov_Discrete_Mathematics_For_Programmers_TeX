@@ -1,0 +1,59 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage[left = 2cm]{geometry}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{caption}
+
+\addto\captionsrussian{
+  \renewcommand{\lstlistingname}{Алгоритм}
+}
+\DeclareCaptionFormat{listing}{\par\vskip1pt#1#2#3}
+\captionsetup[lstlisting]{format=listing, singlelinecheck=false, labelfont=bf}
+
+\lstset{
+  language=C,
+  extendedchars=\true,
+  keepspaces=true,
+  breaklines=true,
+  frame=lines,
+  aboveskip=-5pt,
+  tabsize=1,
+  morekeywords={Вход:, Выход:, true, false, bool, NULL}
+}
+
+\begin{document}
+
+\vspace{5pt} \hrule
+\begin{lstlisting}[caption={Улучшенный алгоритм последовательного раскрашивания}, label=p360, escapechar=\%]
+%\noindent\textbf{Вход:} граф G.\\%
+%\textbf{Выход:} раскраска графа - массив C: \textbf{array} [1..p] \textbf{of} 1..p.%
+void improved_coloring_graph(int p, int G[p][p], int V[p], int C[p])
+{
+	sort(p, V); /* упорядочить вершины по невозрастанию степени */
+	int c = 1; /* первый цвет */
+	for(int v = 0; v < p; ++v)
+		C[v] = 0; /* все не раскрашены */
+	while(!empty(p, V))
+	{
+		for(int v = 0; v < p; ++p)
+		{
+			int flag = 0;
+			for(int u = 0; u < p; ++u)
+			{
+				if(G[v][u] == 0) continue;
+				if(C[u] == c) flag = 1; /* вершину v нельзя покрасить в цвет c */
+			}
+			if(flag) continue;
+			C[v] = c; /* красим вершину v в цвет c */
+			V[v] = -1; /* и удаляем ее из рассмотрения */
+		}
+		c = c + 1; /* следующий цвет */
+	}
+}
+\end{lstlisting}
+
+\end{document}
