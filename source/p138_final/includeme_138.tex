@@ -1,10 +1,10 @@
 \vspace{5pt} \hrule
 
-\begin{lstlisting}[caption={Вычисление значения функции по сокращённому дереву решений}, label=p138_calc_function, escapechar=`]
+\begin{lstlisting}[caption={Вычисление сокращённого дерева решений}, label=p138_calc_function, escapechar=`]
 `\noindent\textbf{Вход:} указатель $T$: $\uparrow$ $N$ на корень дерева решений;\\ массив $x$ : \textbf{array} [1 ..$n$] of 0..1 значений переменных.\\`
 `\textbf{Выход:} 0..1 — значение булевой функции.`
 bool calc_func(tree_node *T, int n, int *x) {
-  for (int i = 0; i < n; i++) {
+  for (int i = 0; i < n + 1; i++) {
     if (T->l == NULL && T->r == NULL) {
       return T->i; /* листовой узел — возвращаем значениe */
     }
